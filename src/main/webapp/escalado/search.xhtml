@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{escaladoBean.page}'/>
+		<f:event type="preRenderView" listener='#{escaladoBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Escalado entities"/>
+
+	<ui:define name="header">
+		Escalado
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Escalado entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="escaladoBeanExampleEmail" value="Email:"/>
+						<h:panelGroup>
+							<h:inputText id="escaladoBeanExampleEmail" value="#{escaladoBean.example.email}"/>
+							<h:message for="escaladoBeanExampleEmail" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="escaladoBeanExampleNome" value="Nome:"/>
+						<h:panelGroup>
+							<h:inputText id="escaladoBeanExampleNome" value="#{escaladoBean.example.nome}"/>
+							<h:message for="escaladoBeanExampleNome" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="escaladoBeanExampleSobrenome" value="Sobrenome:"/>
+						<h:panelGroup>
+							<h:inputText id="escaladoBeanExampleSobrenome" value="#{escaladoBean.example.sobrenome}"/>
+							<h:message for="escaladoBeanExampleSobrenome" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="escaladoBeanExampleCelular1" value="Celular 1:"/>
+						<h:panelGroup>
+							<h:inputText id="escaladoBeanExampleCelular1" value="#{escaladoBean.example.celular1}"/>
+							<h:message for="escaladoBeanExampleCelular1" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="escaladoBeanExampleCelular2" value="Celular 2:"/>
+						<h:panelGroup>
+							<h:inputText id="escaladoBeanExampleCelular2" value="#{escaladoBean.example.celular2}"/>
+							<h:message for="escaladoBeanExampleCelular2" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{escaladoBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{escaladoBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="escaladoBeanPageItems" styleClass="data-table" value="#{escaladoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/escalado/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Sobrenome"/>
+					</f:facet>
+					<h:link outcome="/escalado/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemSobrenome" value="#{_item.sobrenome}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{escaladoBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{escaladoBean.id}'/>
+		<f:event type="preRenderView" listener='#{escaladoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Escalado"/>
+
+	<ui:define name="header">
+		Escalado
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Escalado
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="escaladoBeanEscaladoEmail" value="Email:"/>
+			<h:outputText id="escaladoBeanEscaladoEmail" value="#{escaladoBean.escalado.email}"/>
+			<h:outputText/>
+			<h:outputLabel for="escaladoBeanEscaladoNome" value="Nome:"/>
+			<h:outputText id="escaladoBeanEscaladoNome" value="#{escaladoBean.escalado.nome}"/>
+			<h:outputText/>
+			<h:outputLabel for="escaladoBeanEscaladoSobrenome" value="Sobrenome:"/>
+			<h:outputText id="escaladoBeanEscaladoSobrenome" value="#{escaladoBean.escalado.sobrenome}"/>
+			<h:outputText/>
+			<h:outputLabel for="escaladoBeanEscaladoCelular1" value="Celular 1:"/>
+			<h:outputText id="escaladoBeanEscaladoCelular1" value="#{escaladoBean.escalado.celular1}"/>
+			<h:outputText/>
+			<h:outputLabel for="escaladoBeanEscaladoCelular2" value="Celular 2:"/>
+			<h:outputText id="escaladoBeanEscaladoCelular2" value="#{escaladoBean.escalado.celular2}"/>
+			<h:outputText/>
+			<h:outputLabel for="escaladoBeanEscaladoCelular3" value="Celular 3:"/>
+			<h:outputText id="escaladoBeanEscaladoCelular3" value="#{escaladoBean.escalado.celular3}"/>
+			<h:outputText/>
+			<h:outputLabel for="escaladoBeanEscaladoAniversario" value="Aniversario:"/>
+			<h:outputText id="escaladoBeanEscaladoAniversario" value="#{escaladoBean.escalado.aniversario}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel value="Ativo:"/>
+			<h:outputText styleClass="#{escaladoBean.escalado.ativo ? 'boolean-true' : 'boolean-false'}" value=""/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

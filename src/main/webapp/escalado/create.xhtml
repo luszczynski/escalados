@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{escaladoBean.id}'/>
+		<f:event type="preRenderView" listener='#{escaladoBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Escalado"/>
+
+	<ui:define name="header">
+		Escalado
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty escaladoBean.id}'>
+				Edit existing Escalado
+			</c:when>
+			<c:otherwise>
+				Create a new Escalado
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="escaladoBeanEscaladoEmail" value="Email:"/>
+				<h:panelGroup>
+					<h:inputText id="escaladoBeanEscaladoEmail" value="#{escaladoBean.escalado.email}"/>
+					<h:message for="escaladoBeanEscaladoEmail" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="escaladoBeanEscaladoNome" value="Nome:"/>
+				<h:panelGroup>
+					<h:inputText id="escaladoBeanEscaladoNome" required="true" value="#{escaladoBean.escalado.nome}"/>
+					<h:message for="escaladoBeanEscaladoNome" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="escaladoBeanEscaladoSobrenome" value="Sobrenome:"/>
+				<h:panelGroup>
+					<h:inputText id="escaladoBeanEscaladoSobrenome" required="true" value="#{escaladoBean.escalado.sobrenome}"/>
+					<h:message for="escaladoBeanEscaladoSobrenome" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="escaladoBeanEscaladoCelular1" value="Celular 1:"/>
+				<h:panelGroup>
+					<h:inputText id="escaladoBeanEscaladoCelular1" value="#{escaladoBean.escalado.celular1}"/>
+					<h:message for="escaladoBeanEscaladoCelular1" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="escaladoBeanEscaladoCelular2" value="Celular 2:"/>
+				<h:panelGroup>
+					<h:inputText id="escaladoBeanEscaladoCelular2" value="#{escaladoBean.escalado.celular2}"/>
+					<h:message for="escaladoBeanEscaladoCelular2" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="escaladoBeanEscaladoCelular3" value="Celular 3:"/>
+				<h:panelGroup>
+					<h:inputText id="escaladoBeanEscaladoCelular3" value="#{escaladoBean.escalado.celular3}"/>
+					<h:message for="escaladoBeanEscaladoCelular3" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="escaladoBeanEscaladoAniversario" value="Aniversario:"/>
+				<h:panelGroup>
+					<h:inputText id="escaladoBeanEscaladoAniversario" value="#{escaladoBean.escalado.aniversario}">
+						<f:convertDateTime type="date"/>
+					</h:inputText>
+					<h:message for="escaladoBeanEscaladoAniversario" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="escaladoBeanEscaladoAtivo" value="Ativo:"/>
+				<h:panelGroup>
+					<h:selectBooleanCheckbox id="escaladoBeanEscaladoAtivo" value="#{escaladoBean.escalado.ativo}"/>
+					<h:message for="escaladoBeanEscaladoAtivo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{escaladoBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty escaladoBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{escaladoBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{escaladoBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

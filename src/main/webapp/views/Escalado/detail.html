@@ -1,0 +1,100 @@
+<header ng-switch on="$location.path().indexOf('/Escalados/new') > -1">
+    <h3 ng-switch-when="true">Create a new Escalado</h3>
+    <h3 ng-switch-when="false">View or edit Escalado</h3>
+</header>
+<form id="EscaladoForm" name="EscaladoForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.email.$invalid}">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div id="emailControls" class="col-sm-10">
+            <input id="email" name="email" type="text" class="form-control" ng-model="escalado.email" placeholder="Enter the Escalado Email"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.nome.$invalid}">
+        <label for="nome" class="col-sm-2 control-label">Nome</label>
+        <div id="nomeControls" class="col-sm-10">
+            <input id="nome" name="nome" type="text" required ng-maxlength="50" ng-minlength="2" class="form-control" ng-model="escalado.nome" placeholder="Enter the Escalado Nome"></input>
+            <span class="help-block error" ng-show="EscaladoForm.nome.$error.required">required</span> 
+            <span class="help-block error" ng-show="EscaladoForm.nome.$error.minlength">minimum length is 2</span>
+            <span class="help-block error" ng-show="EscaladoForm.nome.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.sobrenome.$invalid}">
+        <label for="sobrenome" class="col-sm-2 control-label">Sobrenome</label>
+        <div id="sobrenomeControls" class="col-sm-10">
+            <input id="sobrenome" name="sobrenome" type="text" required ng-maxlength="50" ng-minlength="2" class="form-control" ng-model="escalado.sobrenome" placeholder="Enter the Escalado Sobrenome"></input>
+            <span class="help-block error" ng-show="EscaladoForm.sobrenome.$error.required">required</span> 
+            <span class="help-block error" ng-show="EscaladoForm.sobrenome.$error.minlength">minimum length is 2</span>
+            <span class="help-block error" ng-show="EscaladoForm.sobrenome.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.celular1.$invalid}">
+        <label for="celular1" class="col-sm-2 control-label">Celular 1</label>
+        <div id="celular1Controls" class="col-sm-10">
+            <input id="celular1" name="celular1" type="text" ng-maxlength="20" class="form-control" ng-model="escalado.celular1" placeholder="Enter the Escalado Celular 1"></input>
+            <span class="help-block error" ng-show="EscaladoForm.celular1.$error.maxlength">maximum length is 20</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.celular2.$invalid}">
+        <label for="celular2" class="col-sm-2 control-label">Celular 2</label>
+        <div id="celular2Controls" class="col-sm-10">
+            <input id="celular2" name="celular2" type="text" ng-maxlength="20" class="form-control" ng-model="escalado.celular2" placeholder="Enter the Escalado Celular 2"></input>
+            <span class="help-block error" ng-show="EscaladoForm.celular2.$error.maxlength">maximum length is 20</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.celular3.$invalid}">
+        <label for="celular3" class="col-sm-2 control-label">Celular 3</label>
+        <div id="celular3Controls" class="col-sm-10">
+            <input id="celular3" name="celular3" type="text" ng-maxlength="20" class="form-control" ng-model="escalado.celular3" placeholder="Enter the Escalado Celular 3"></input>
+            <span class="help-block error" ng-show="EscaladoForm.celular3.$error.maxlength">maximum length is 20</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.aniversario.$invalid}">
+        <label for="aniversario" class="col-sm-2 control-label">Aniversario</label>
+        <div id="aniversarioControls" class="col-sm-10">
+            <date id="aniversario" name="aniversario" ng-model="escalado.aniversario" placeholder="Enter the Escalado Aniversario"></date>
+            <span class="help-block error" ng-show="EscaladoForm.aniversario.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.facebook.$invalid}">
+        <label for="facebook" class="col-sm-2 control-label">Facebook</label>
+        <div id="facebookControls" class="col-sm-10">
+            <input id="facebook" name="facebook" type="text" ng-maxlength="40" class="form-control" ng-model="escalado.facebook" placeholder="Enter the Escalado Facebook"></input>
+            <span class="help-block error" ng-show="EscaladoForm.facebook.$error.maxlength">maximum length is 40</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.twitter.$invalid}">
+        <label for="twitter" class="col-sm-2 control-label">Twitter</label>
+        <div id="twitterControls" class="col-sm-10">
+            <input id="twitter" name="twitter" type="text" ng-maxlength="30" class="form-control" ng-model="escalado.twitter" placeholder="Enter the Escalado Twitter"></input>
+            <span class="help-block error" ng-show="EscaladoForm.twitter.$error.maxlength">maximum length is 30</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EscaladoForm.ativo.$invalid}">
+        <label for="ativo" class="col-sm-2 control-label">Ativo</label>
+        <div id="ativoControls" class="col-sm-10">
+            <input id="ativo" name="ativo" type="checkbox" class="form-control" ng-model="escalado.ativo" placeholder="Enter the Escalado Ativo"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveEscalado" name="saveEscalado" class="btn btn-primary" ng-disabled="isClean() || EscaladoForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteEscalado" name="deleteEscalado" class="btn btn-danger" ng-show="escalado.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
